@@ -22,7 +22,11 @@ def getExtentionName(name):
 def createSourceFile(url):
     # get html data
     # refer: http://docs.python.jp/3.3/library/urllib.request.html
-    reqhtml = urllib.request.urlopen(url)
+    try:
+        reqhtml = urllib.request.urlopen(url)
+    except Exception as e:
+        print(e)
+        return
 
     # html decode
     # refer: http://pyshu.blog111.fc2.com/blog-entry-64.html
