@@ -4,7 +4,7 @@ create_gitignore() {
     # argv length check
     if [ -z $1 ]; then
         echo 'Usage: git_ignore arg1 arg2 arg3 ...'
-        exit 1
+        return
     fi
 
     # overwrite check
@@ -17,7 +17,7 @@ create_gitignore() {
     # download .gitignore
     if [ $flag = 'y' ]; then
         s=$(echo $@ | tr ' ' ',')
-        curl https://gitignore.io/api/$s > .gitignore
+        curl -f https://gitignore.io/api/$s -o .gitignore
         echo "create .ignore file for: ${s}"
     fi
     echo 'finish.'
